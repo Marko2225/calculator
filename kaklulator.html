@@ -59,7 +59,9 @@
         <button onclick="calculate('*')">*</button>
         <button onclick="calculate('/')">/</button>
     </div>
-
+    <div class="row">
+        <button onclick="clearInputs()">C</button>
+    </div>
     <br><br>
     <div>
         <strong>Rezultat: </strong><span id="result">0</span>
@@ -68,7 +70,7 @@
     <script>
 
      // Postavimo početno aktivno input polje na num1
-     let activeInput = 'num1'; 
+     //let activeInput = 'num1'; 
 
      function focusToInput(inputId) {
             activeInput = inputId; // Postavljamo aktivno input polje
@@ -106,6 +108,12 @@
             }
 
             document.getElementById("result").innerText = result;
+        }
+        function clearInputs() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("result").innerText = "0";
+            focusToInput('num1');
         }
     </script>
 </body>
