@@ -60,7 +60,8 @@
         <button onclick="calculate('/')">/</button>
     </div>
     <div class="row">
-        <button onclick="clearInputs()">C</button>
+        <button onclick="deleteLastDigit()">←</button>
+        <button onclick="clearInputs()">Clear</button>
     </div>
     <br><br>
     <div>
@@ -70,7 +71,7 @@
     <script>
 
      // Postavimo početno aktivno input polje na num1
-     //let activeInput = 'num1'; 
+     let activeInput = 'num1'; 
 
      function focusToInput(inputId) {
             activeInput = inputId; // Postavljamo aktivno input polje
@@ -82,7 +83,11 @@
             inputField.value += number; // Dodajemo broj u trenutno aktivno input polje
            // inputField.focus(); // Održavamo fokus na aktivnom polju
         }
-  
+        function deleteLastDigit() {
+            const inputField = document.getElementById(activeInput);
+            inputField.value = inputField.value.slice(0, -1); // Uklanja poslednji karakter
+        }
+
         function calculate(operation) {
             var num1 = parseFloat(document.getElementById("num1").value);
             var num2 = parseFloat(document.getElementById("num2").value);
