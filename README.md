@@ -1,1 +1,2 @@
 # calculator
+Use for> + - * / 
