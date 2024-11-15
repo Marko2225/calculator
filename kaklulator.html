@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px;
+            font-size: 1em;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+
+    <input onclick="focusToInput('num1')" type="text" id="num1" placeholder="Prvi broj" />
+    <input onclick="focusToInput('num2')" type="text" id="num2" placeholder="Drugi broj" />
+    <br>
+    <!-- <button onclick="focusToInput('num1')">Unesi u Prvi Broj</button>
+    <button onclick="focusToInput('num2')">Unesi u Drugi Broj</button> -->
+    <div class="row">
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+    </div>
+
+    <br><br>
+    <div>
+        <strong>Rezultat: </strong><span id="result">0</span>
+    </div>
+
+    <script>
+
+     // Postavimo početno aktivno input polje na num1
+     let activeInput = 'num1'; 
+
+     function focusToInput(inputId) {
+            activeInput = inputId; // Postavljamo aktivno input polje
+            document.getElementById(inputId).focus(); // Fokusiramo na to input polje
+        }
+
+        function appendNumber(number) {
+            const inputField = document.getElementById(activeInput);
+            inputField.value += number; // Dodajemo broj u trenutno aktivno input polje
+           // inputField.focus(); // Održavamo fokus na aktivnom polju
+        }
+  
+        function calculate(operation) {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            var result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "Molimo unesite važeće brojeve.";
+            } else {
+                switch (operation) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num2 !== 0 ? num1 / num2 : "Deo sa nulom!";
+                        break;
+                }
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>
