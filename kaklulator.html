@@ -5,27 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 300px;
-            margin: auto;
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e2e2e2;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            width: 320px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
             text-align: center;
+            font-size: 2em;
+            color: #333;
+            margin: 0 0 20px;
         }
+
         input[type="text"] {
-            width: 100%;
+            width: calc(100% - 20px);
             margin-bottom: 10px;
-            padding: 10px;
-            font-size: 1em;
+            padding: 15px;
+            font-size: 2em;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+            outline: none;
         }
+
+        input[type="text"]:focus {
+            border-color: #0056b3;
+        }
+
         button {
-            padding: 10px;
-            font-size: 1em;
+            padding: 20px;
+            font-size: 1.5em;
             margin: 5px;
             cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.1s;
+            flex: 1;
         }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
         .row {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        #result {
+            font-size: 1.5em; 
+            margin-top: 20px; 
+            padding: 15px; 
+            background-color: #007BFF; 
+            color: #fff; 
+            border-radius: 10px; 
+            text-align: center; 
+            border: 2px solid #0056b3; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -61,10 +119,13 @@
     </div>
     <div class="row">
         <button onclick="deleteLastDigit()">←</button>
-        <button onclick="clearInputs()">Clear</button>
+        <button onclick="clearInputs()">C</button>
     </div>
     <br><br>
-    <div>
+    <div
+    
+    
+    >
         <strong>Rezultat: </strong><span id="result">0</span>
     </div>
 
@@ -72,7 +133,7 @@
 
      // Postavimo početno aktivno input polje na num1
      let activeInput = 'num1'; 
-
+console.log(num1);//
      function focusToInput(inputId) {
             activeInput = inputId; // Postavljamo aktivno input polje
             document.getElementById(inputId).focus(); // Fokusiramo na to input polje
@@ -83,7 +144,7 @@
             inputField.value += number; // Dodajemo broj u trenutno aktivno input polje
            // inputField.focus(); // Održavamo fokus na aktivnom polju
         }
-        function deleteLastDigit() {
+  function deleteLastDigit() {
             const inputField = document.getElementById(activeInput);
             inputField.value = inputField.value.slice(0, -1); // Uklanja poslednji karakter
         }
@@ -107,7 +168,7 @@
                         result = num1 * num2;
                         break;
                     case '/':
-                        result = num2 !== 0 ? num1 / num2 : "Deo sa nulom!";
+                        result = num2 !== 0 ? num1 / num2 : "Deljeno sa nulom!";
                         break;
                 }
             }
